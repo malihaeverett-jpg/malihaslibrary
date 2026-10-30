@@ -1,0 +1,759 @@
+body {
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap');
+
+:root {
+  --void: #050b13;
+  --midnight: #091522;
+  --ocean: #102b3a;
+  --glow: #68d3dc;
+  --gold: #c8a76a;
+  --bright-gold: #f0d9a3;
+  --ivory: #f0e7d4;
+  --smoke: #a5b5bd;
+  --line: #c8a76a45;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--ivory);
+  background:
+    radial-gradient(ellipse at 50% 10%, #18364b 0%, transparent 42%),
+    radial-gradient(ellipse at 5% 60%, #152a35 0%, transparent 35%),
+    var(--void);
+  font-family: 'Cormorant Garamond', serif;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--void);
+}
+
+/* THE LIVING NIGHT SKY */
+
+.stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  opacity: .7;
+  background-image:
+    radial-gradient(1px 1px at 12% 21%, #fff 99%, transparent),
+    radial-gradient(2px 2px at 28% 72%, #e7d4a4 99%, transparent),
+    radial-gradient(1px 1px at 82% 16%, #fff 99%, transparent),
+    radial-gradient(2px 2px at 91% 61%, #70dce6 99%, transparent),
+    radial-gradient(1px 1px at 62% 38%, #fff 99%, transparent),
+    radial-gradient(1px 1px at 40% 88%, #c5e9f1 99%, transparent);
+  background-size: 280px 280px;
+  animation: sky-drift 70s linear infinite;
+}
+
+@keyframes sky-drift {
+  to { background-position: 280px -280px; }
+}
+
+@keyframes breathe {
+  from { opacity: .45; transform: scale(.96); }
+  to { opacity: .9; transform: scale(1.04); }
+}
+
+@keyframes float {
+  from { transform: translateY(0) rotate(-4deg); }
+  to { transform: translateY(-13px) rotate(5deg); }
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: .45; }
+  50% { opacity: 1; }
+}
+
+/* NAVIGATION */
+
+.topbar {
+  position: relative;
+  z-index: 10;
+  height: 92px;
+  padding: 0 7%;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(180deg, #050b13, #07121ddd);
+}
+
+.logo {
+  width: fit-content;
+  font: 500 29px 'Cinzel', serif;
+  letter-spacing: 3px;
+  color: var(--bright-gold);
+}
+
+.logo span {
+  color: var(--glow);
+  font-size: 15px;
+}
+
+.topbar nav {
+  display: flex;
+  justify-content: center;
+  gap: clamp(15px, 3vw, 45px);
+}
+
+.topbar nav a,
+footer {
+  font: 9px 'Cinzel', serif;
+  letter-spacing: 2px;
+  color: #c1c6c3;
+}
+
+.topbar nav a {
+  transition: color .3s;
+}
+
+.topbar nav a:hover,
+footer a:hover {
+  color: var(--bright-gold);
+}
+
+.moon {
+  justify-self: end;
+  color: var(--gold);
+  font-size: 31px;
+}
+
+/* THE PORTAL CHAMBER */
+
+.hero {
+  position: relative;
+  min-height: 1080px;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 85px 20px 90px;
+  background:
+    radial-gradient(ellipse at 50% 52%, #1c6271a0 0%, #10344872 23%, transparent 54%),
+    linear-gradient(180deg, #091522 0%, #0b1d2a 45%, #07121d 100%);
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  opacity: .3;
+  background:
+    repeating-linear-gradient(
+      115deg,
+      transparent 0 110px,
+      #d4bb7d08 111px,
+      transparent 113px 220px
+    );
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '✧        ·        ✦        ·        ✧';
+  position: absolute;
+  bottom: 23px;
+  left: 0;
+  right: 0;
+  color: var(--gold);
+  font-size: 13px;
+  letter-spacing: 15px;
+  opacity: .8;
+}
+
+.hero-glow {
+  position: absolute;
+  z-index: -1;
+  width: 620px;
+  height: 620px;
+  top: 340px;
+  border-radius: 50%;
+  background: #4ac2d42c;
+  filter: blur(100px);
+  animation: breathe 6s ease-in-out infinite alternate;
+}
+
+.eyebrow {
+  font: 9px 'Cinzel', serif;
+  letter-spacing: 4px;
+  color: var(--bright-gold);
+  line-height: 2;
+}
+
+.hero h1 {
+  margin-top: 27px;
+  font: 400 clamp(42px, 6.5vw, 83px)/1.12 'Cinzel', serif;
+  letter-spacing: 2px;
+  text-shadow: 0 5px 45px #0008;
+}
+
+.hero h1 span {
+  display: block;
+  margin-top: 7px;
+  font-size: 1.04em;
+  color: var(--bright-gold);
+  letter-spacing: 6px;
+  text-shadow: 0 0 35px #d8b77b40;
+}
+
+.hero-description {
+  max-width: 440px;
+  margin-top: 24px;
+  font-size: 19px;
+  line-height: 1.8;
+  color: #c0d0d4;
+}
+
+/* ORNATE ARCHWAY */
+
+.portal-wrap {
+  position: relative;
+  z-index: 1;
+  width: min(510px, 85vw);
+  margin-top: 56px;
+  padding: 0 17px 32px;
+}
+
+.portal-halo {
+  position: absolute;
+  inset: 5% -12% 12%;
+  border-radius: 50%;
+  background: #3ac8d934;
+  filter: blur(65px);
+  animation: breathe 4s ease-in-out infinite alternate;
+}
+
+.portal-frame {
+  position: relative;
+  height: auto;
+  aspect-ratio: .86;
+  padding: 11px;
+  border: 1px solid var(--bright-gold);
+  border-radius: 50% 50% 4px 4px;
+  background:
+    linear-gradient(135deg, #f2dfa8, #70522e 14%, #d8bd82 28%, #624729 43%, #e5cc92 58%, #755630 75%, #e4c989);
+  box-shadow:
+    0 0 0 4px #090e16,
+    0 0 0 5px #c8a76a88,
+    0 0 0 12px #c8a76a12,
+    0 0 50px #45b9cb40,
+    0 0 120px #1d9eb52b,
+    inset 0 0 20px #fff4ce;
+  animation: portal-light 5s ease-in-out infinite alternate;
+}
+
+@keyframes portal-light {
+  from {
+    box-shadow: 0 0 0 4px #090e16, 0 0 0 5px #c8a76a88, 0 0 45px #45b9cb30;
+  }
+  to {
+    box-shadow: 0 0 0 4px #090e16, 0 0 0 5px #f0d9a3, 0 0 75px #45b9cb66;
+  }
+}
+
+.portal-frame::before {
+  content: '✧';
+  position: absolute;
+  z-index: 3;
+  top: 14%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff0be;
+  font-size: 31px;
+  text-shadow: 0 0 15px #fff0be;
+  pointer-events: none;
+}
+
+.portal-frame::after {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  inset: 18px;
+  border: 1px solid #f4dfae95;
+  border-radius: 50% 50% 2px 2px;
+  box-shadow: inset 0 0 20px #c8a76a1b;
+  pointer-events: none;
+}
+
+.portal-image {
+  position: relative;
+  height: 100%;
+  border-radius: 50% 50% 2px 2px;
+  border: 1px solid #e9d5a0;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, #06111c00 45%, #06111c4a),
+    url('portal.jpg') center center / cover no-repeat,
+    #14374a;
+}
+
+.rune {
+  position: absolute;
+  z-index: 4;
+  color: #f8e5b3;
+  font-size: 24px;
+  text-shadow: 0 0 12px #ffe6a3, 0 0 35px #70d9e9;
+  animation: float 3.4s ease-in-out infinite alternate;
+}
+
+.rune-one { top: 20%; left: -3%; }
+.rune-two { top: 43%; right: -4%; animation-delay: .7s; }
+.rune-three { bottom: 26%; left: -5%; animation-delay: 1.3s; }
+.rune-four { bottom: 13%; right: 1%; animation-delay: 1.8s; }
+
+.portal-caption {
+  display: block;
+  position: relative;
+  margin-top: 27px;
+  font: 9px 'Cinzel', serif;
+  letter-spacing: 3px;
+  color: var(--bright-gold);
+}
+
+.enter-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 19px;
+  margin-top: 8px;
+  padding: 18px 29px;
+  border: 1px solid var(--gold);
+  outline: 1px solid #c8a76a45;
+  outline-offset: 5px;
+  background: linear-gradient(115deg, #c8a76a13, #c8a76a02);
+  color: var(--bright-gold);
+  font: 9px 'Cinzel', serif;
+  letter-spacing: 3px;
+  transition: .35s ease;
+}
+
+.enter-button span {
+  color: var(--glow);
+}
+
+.enter-button:hover {
+  background: var(--gold);
+  color: var(--void);
+  box-shadow: 0 0 35px #d8b77b55;
+  transform: translateY(-3px);
+}
+
+.tiny-note {
+  margin-top: 25px;
+  color: #819aa4;
+  font-size: 10px;
+  letter-spacing: 4px;
+}
+
+/* THE ARCHIVE OF WORLDS */
+
+.worlds {
+  position: relative;
+  padding: 120px 7% 130px;
+  border-top: 1px solid var(--line);
+  background:
+    radial-gradient(ellipse at 50% 0%, #193b4b65, transparent 55%),
+    linear-gradient(180deg, #07121d, #0a1925 50%, #07121d);
+}
+
+.worlds::before,
+.about::before {
+  content: '✧';
+  display: block;
+  text-align: center;
+  margin: -143px auto 108px;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  font-size: 25px;
+  color: var(--bright-gold);
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  background: var(--void);
+  box-shadow: 0 0 35px #c8a76a22;
+}
+
+.section-intro {
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.section-intro h2,
+.about h2 {
+  margin-top: 22px;
+  font-size: clamp(38px, 5.2vw, 63px);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.section-intro h2 em,
+.about h2 em {
+  color: var(--bright-gold);
+  font-weight: 400;
+  font-style: italic;
+}
+
+.section-intro > p:last-of-type {
+  margin-top: 20px;
+  font-size: 19px;
+  color: var(--smoke);
+}
+
+.divider {
+  margin-top: 29px;
+  color: var(--gold);
+  letter-spacing: 7px;
+}
+
+.world-grid {
+  max-width: 1160px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 27px;
+}
+
+/* EACH BOOK IS A DIFFERENT REALM */
+
+.world-card {
+  display: block;
+  min-width: 0;
+}
+
+.world-art {
+  position: relative;
+  min-height: 440px;
+  overflow: hidden;
+  isolation: isolate;
+  padding: 45px 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: 1px solid #c8a76a82;
+  outline: 1px solid #c8a76a30;
+  outline-offset: -8px;
+  transition: transform .5s, border-color .5s, box-shadow .5s;
+}
+
+.world-art::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 13px;
+  border: 1px solid #f0d9a345;
+  pointer-events: none;
+}
+
+.world-art::after {
+  content: '✦';
+  position: absolute;
+  top: 19px;
+  color: var(--bright-gold);
+  font-size: 14px;
+  text-shadow: 0 0 15px var(--gold);
+}
+
+.world-card:hover .world-art {
+  transform: translateY(-9px);
+  border-color: var(--bright-gold);
+  box-shadow: 0 18px 60px #0006, 0 0 30px #c8a76a17;
+}
+
+.world-one {
+  background:
+    radial-gradient(ellipse at 50% 40%, #7a52615e, transparent 48%),
+    radial-gradient(ellipse at 20% 80%, #5a354c70, transparent 40%),
+    linear-gradient(145deg, #171927, #101622 55%, #29202a);
+}
+
+.world-two {
+  background:
+    radial-gradient(ellipse at 50% 40%, #5e80574f, transparent 48%),
+    radial-gradient(ellipse at 80% 80%, #2d55426b, transparent 40%),
+    linear-gradient(145deg, #142620, #0b1d1e 55%, #273d30);
+}
+
+.world-three {
+  background:
+    radial-gradient(ellipse at 50% 40%, #a57c4a52, transparent 48%),
+    radial-gradient(ellipse at 80% 80%, #6d51356b, transparent 40%),
+    linear-gradient(145deg, #29221d, #131d26 55%, #413222);
+}
+
+.mini-orbit {
+  position: absolute;
+  z-index: -1;
+  width: 230px;
+  height: 310px;
+  border: 1px solid #e3c78d50;
+  border-radius: 50%;
+  transform: rotate(25deg);
+  box-shadow: 0 0 25px #c8a76a10;
+  transition: transform .8s;
+}
+
+.mini-orbit::before,
+.mini-orbit::after {
+  content: '';
+  position: absolute;
+  inset: 12px -12px;
+  border: 1px solid #e3c78d32;
+  border-radius: 50%;
+}
+
+.mini-orbit::after {
+  inset: 30px -25px;
+  transform: rotate(40deg);
+}
+
+.world-card:hover .mini-orbit {
+  transform: rotate(55deg) scale(1.06);
+}
+
+.world-symbol {
+  color: var(--bright-gold);
+  font-size: 49px;
+  margin-bottom: 29px;
+  text-shadow: 0 0 24px #d8b77b77;
+  animation: float 4s ease-in-out infinite alternate;
+}
+
+.world-category,
+.world-author {
+  position: relative;
+  font: 8px 'Cinzel', serif;
+  letter-spacing: 2px;
+  color: #dfd2b6;
+}
+
+.world-art h3 {
+  position: relative;
+  margin: 21px 0;
+  font: 500 clamp(17px, 2vw, 24px)/1.6 'Cinzel', serif;
+  letter-spacing: 2px;
+  overflow-wrap: anywhere;
+}
+
+.world-author {
+  font-size: 9px;
+  color: var(--bright-gold);
+}
+
+.portal-enter {
+  position: absolute;
+  bottom: 29px;
+  font: 8px 'Cinzel', serif;
+  letter-spacing: 2px;
+  color: var(--bright-gold);
+  transition: letter-spacing .3s;
+}
+
+.world-card:hover .portal-enter {
+  letter-spacing: 3px;
+}
+
+.world-details {
+  padding: 20px 4px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 9px;
+  border-bottom: 1px solid var(--line);
+  color: var(--smoke);
+  font-size: 14px;
+}
+
+.world-details span:first-child {
+  color: var(--gold);
+  font: 8px 'Cinzel', serif;
+  letter-spacing: 1px;
+}
+
+/* A NOTE FROM THE LIBRARIAN */
+
+.about {
+  position: relative;
+  padding: 110px 20px 125px;
+  text-align: center;
+  border-top: 1px solid var(--line);
+  background:
+    radial-gradient(ellipse at 50% 40%, #1b4051a1, transparent 60%),
+    #07121d;
+}
+
+.about::before {
+  margin: -141px auto 70px;
+}
+
+.about-star {
+  display: block;
+  color: var(--bright-gold);
+  font-size: 29px;
+  margin-bottom: 22px;
+  animation: shimmer 4s infinite;
+}
+
+.about-text {
+  max-width: 460px;
+  margin: 30px auto;
+  font-size: 20px;
+  line-height: 1.9;
+  color: #b8c9cc;
+}
+
+.signature {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 26px;
+  font-style: italic;
+  color: var(--bright-gold);
+}
+
+/* THE FINAL INSCRIPTION */
+
+footer {
+  min-height: 95px;
+  padding: 25px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--line);
+  background: #050b13;
+  font-size: 8px;
+}
+
+footer a {
+  color: var(--bright-gold);
+}
+
+/* SMALL SCREENS */
+
+@media (max-width: 800px) {
+  .topbar {
+    padding: 0 5%;
+    grid-template-columns: auto 1fr auto;
+    height: 75px;
+  }
+
+  .topbar nav {
+    gap: 14px;
+  }
+
+  .topbar nav a {
+    font-size: 7px;
+    letter-spacing: 1px;
+  }
+
+  .hero {
+    min-height: auto;
+    padding: 75px 18px 100px;
+  }
+
+  .portal-frame {
+    aspect-ratio: .82;
+  }
+
+  .worlds {
+    padding: 100px 6%;
+  }
+
+  .world-grid {
+    grid-template-columns: 1fr;
+    max-width: 430px;
+    gap: 35px;
+  }
+
+  .world-art {
+    min-height: 440px;
+  }
+
+  .world-art h3 {
+    font-size: 26px;
+  }
+
+  footer {
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 430px) {
+  .logo {
+    font-size: 23px;
+  }
+
+  .topbar nav {
+    gap: 8px;
+  }
+
+  .topbar nav a {
+    font-size: 6px;
+    letter-spacing: .5px;
+  }
+
+  .moon {
+    display: none;
+  }
+
+  .hero h1 {
+    letter-spacing: 0;
+  }
+
+  .hero h1 span {
+    letter-spacing: 3px;
+  }
+
+  .hero-description {
+    font-size: 17px;
+  }
+
+  .portal-wrap {
+    width: 88vw;
+  }
+
+  .portal-caption {
+    font-size: 7px;
+    letter-spacing: 2px;
+  }
+
+  .world-details {
+    font-size: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+}

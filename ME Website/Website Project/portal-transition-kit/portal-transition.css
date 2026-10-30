@@ -1,0 +1,122 @@
+/* PORTAL TRANSITIONS — standalone, safe to add to existing book pages */
+:root {
+  --portal-core: #111;
+  --portal-glow: #9b1c2b;
+  --portal-glow-soft: rgba(155, 28, 43, .45);
+}
+
+/* Change the portal colors by adding data-world to each page's <body>. */
+body[data-world="library"],
+body[data-world="alchemised"] {
+  --portal-core: #080607;
+  --portal-glow: #a51e32;
+  --portal-glow-soft: rgba(165, 30, 50, .5);
+}
+body[data-world="cruel-prince"] {
+  --portal-core: #07100b;
+  --portal-glow: #c8a75a;
+  --portal-glow-soft: rgba(54, 145, 79, .48);
+}
+body[data-world="scythe"] {
+  --portal-core: #071012;
+  --portal-glow: #7fb8b1;
+  --portal-glow-soft: rgba(74, 161, 157, .45);
+}
+
+#portal-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  pointer-events: none;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at center, transparent 0 12%, var(--portal-glow-soft) 13%, transparent 27%),
+    radial-gradient(circle at center, var(--portal-core) 0 4%, transparent 5%),
+    var(--portal-core);
+  clip-path: circle(0 at 50% 50%);
+  opacity: 0;
+}
+
+#portal-transition::before,
+#portal-transition::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+#portal-transition::before {
+  width: min(70vw, 70vh);
+  border: 1px solid var(--portal-glow);
+  box-shadow:
+    0 0 12px var(--portal-glow),
+    inset 0 0 25px var(--portal-glow-soft),
+    0 0 65px var(--portal-glow-soft);
+}
+
+#portal-transition::after {
+  width: min(56vw, 56vh);
+  border: 1px solid color-mix(in srgb, var(--portal-glow) 65%, white);
+  box-shadow: 0 0 22px var(--portal-glow-soft);
+}
+
+#portal-transition .portal-label {
+  position: relative;
+  z-index: 1;
+  color: #f4e9e7;
+  font: 10px/1.6 "IBM Plex Mono", Consolas, monospace;
+  letter-spacing: .28em;
+  text-align: center;
+  text-transform: uppercase;
+  opacity: 0;
+  text-shadow: 0 0 14px var(--portal-glow);
+}
+
+#portal-transition.portal-opening {
+  opacity: 1;
+  animation: portal-open .9s cubic-bezier(.72, 0, .25, 1) forwards;
+}
+#portal-transition.portal-opening .portal-label {
+  animation: portal-label-in .35s ease .2s both;
+}
+#portal-transition.portal-reveal {
+  opacity: 1;
+  clip-path: circle(150vmax at 50% 50%);
+  animation: portal-reveal .95s cubic-bezier(.72, 0, .25, 1) forwards;
+}
+#portal-transition.portal-reveal .portal-label {
+  animation: portal-label-out .25s ease both;
+}
+
+@keyframes portal-open {
+  0% { clip-path: circle(0 at 50% 50%); }
+  18% { clip-path: circle(14vmax at 50% 50%); }
+  100% { clip-path: circle(150vmax at 50% 50%); }
+}
+@keyframes portal-reveal {
+  0% { clip-path: circle(150vmax at 50% 50%); }
+  72% { clip-path: circle(14vmax at 50% 50%); }
+  100% { clip-path: circle(0 at 50% 50%); opacity: 0; }
+}
+@keyframes portal-label-in {
+  from { opacity: 0; letter-spacing: .55em; }
+  to { opacity: 1; letter-spacing: .28em; }
+}
+@keyframes portal-label-out {
+  from { opacity: .8; }
+  to { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #portal-transition,
+  #portal-transition.portal-opening,
+  #portal-transition.portal-reveal {
+    animation-duration: .01ms !important;
+  }
+}
